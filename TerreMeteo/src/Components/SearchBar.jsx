@@ -49,7 +49,7 @@ export default function SearchBar({ onCitySelect }) {
       <TextField
         fullWidth
         variant="outlined"
-        placeholder="Cerca una cittÃ ..."
+        placeholder="Cerca una città ..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={() => {
