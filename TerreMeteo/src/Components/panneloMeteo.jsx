@@ -22,9 +22,11 @@ export default function WeatherPanel({ weatherData, locationData }) {
       <Paper
         sx={{
           p: 3,
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backgroundColor: 'rgba(26, 26, 46, 0.6)',
           backdropFilter: 'blur(10px)',
-          borderRadius: '12px',
+          borderRadius: '16px',
+          border: '1px solid rgba(102, 126, 234, 0.2)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
         }}
       >
         {/* Informazioni geografiche */}
@@ -37,7 +39,11 @@ export default function WeatherPanel({ weatherData, locationData }) {
           {formatCoord(locationData.longitude, 'E', 'W')}
         </Typography>
 
-        <Divider sx={{ my: 3, backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
+        <Divider sx={{ 
+          my: 3, 
+          backgroundColor: 'rgba(102, 126, 234, 0.3)',
+          height: '1px',
+        }} />
 
         {/* Dati meteo attuali */}
         {current && (
@@ -112,9 +118,15 @@ export default function WeatherPanel({ weatherData, locationData }) {
                     sx={{
                       p: 2,
                       textAlign: 'center',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                      border: '1px solid rgba(102, 126, 234, 0.2)',
                       borderRadius: '12px',
+                      transition: 'all 200ms ease',
+                      '&:hover': {
+                        backgroundColor: 'rgba(102, 126, 234, 0.15)',
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 4px 16px rgba(102, 126, 234, 0.3)',
+                      },
                     }}
                   >
                     <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', mb: 1 }}>

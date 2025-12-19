@@ -57,21 +57,28 @@ export default function SearchBar({ onCitySelect }) {
         }}
         sx={{
           '& .MuiOutlinedInput-root': {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: 'rgba(26, 26, 46, 0.6)',
+            backdropFilter: 'blur(10px)',
             color: 'white',
-            borderRadius: '12px',
+            borderRadius: '16px',
+            border: '1px solid rgba(102, 126, 234, 0.2)',
+            transition: 'all 200ms ease',
             '& fieldset': {
-              borderColor: 'rgba(255, 255, 255, 0.3)',
+              borderColor: 'rgba(102, 126, 234, 0.3)',
             },
             '&:hover fieldset': {
-              borderColor: 'rgba(255, 255, 255, 0.5)',
+              borderColor: 'rgba(102, 126, 234, 0.5)',
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'rgba(255, 255, 255, 0.8)',
+              borderColor: 'rgba(102, 126, 234, 0.8)',
+              borderWidth: '2px',
+            },
+            '&.Mui-focused': {
+              boxShadow: '0 0 0 4px rgba(102, 126, 234, 0.1)',
             },
           },
           '& .MuiInputBase-input::placeholder': {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(255, 255, 255, 0.5)',
           },
         }}
       />
@@ -87,14 +94,24 @@ export default function SearchBar({ onCitySelect }) {
         {showResults && results.length > 0 && (
           <Paper
             sx={{
-              borderRadius: '12px',
+              borderRadius: '16px',
               maxHeight: 300,
               overflow: 'auto',
-              backgroundColor: 'rgba(30, 30, 30, 0.95)',
+              backgroundColor: 'rgba(26, 26, 46, 0.95)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(102, 126, 234, 0.2)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
             }}
           >
             <Box sx={{ p: 1 }}>
-              <Typography sx={{ color: 'rgba(255, 255, 255, 0.7)', px: 2, py: 1, fontSize: '0.875rem' }}>
+              <Typography sx={{ 
+                color: 'rgba(255, 255, 255, 0.8)', 
+                px: 2, 
+                py: 1, 
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+              }}>
                 Suggerimenti
               </Typography>
             </Box>
@@ -108,8 +125,10 @@ export default function SearchBar({ onCitySelect }) {
                     borderRadius: '12px',
                     mx: 1,
                     mb: 0.5,
+                    transition: 'all 200ms ease',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      backgroundColor: 'rgba(102, 126, 234, 0.15)',
+                      transform: 'translateX(4px)',
                     },
                   }}
                 >

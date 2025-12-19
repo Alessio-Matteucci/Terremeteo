@@ -181,9 +181,9 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation }) {
         <mesh raycast={() => null}>
           <sphereGeometry args={[2.05, 32, 32]} />
           <meshBasicMaterial
-            color="#4a90e2"
+            color="#667eea"
             transparent
-            opacity={0.1}
+            opacity={0.15}
             side={THREE.BackSide}
           />
         </mesh>
@@ -211,7 +211,8 @@ function LocationMarker({ lat, lon, latLonToVector3 }) {
   useEffect(() => {
     if (!markerRef.current) return;
 
-    const pos = latLonToVector3(lat, lon, 2.05); // leggermente sopra la superficie
+    // Posiziona il marker esattamente sulla superficie del globo (raggio 2)
+    const pos = latLonToVector3(lat, lon, 2.0);
     markerRef.current.position.copy(pos);
 
     // Orienta il marker verso l'esterno: allinea l'asse +Z locale alla normale
@@ -230,22 +231,22 @@ function LocationMarker({ lat, lon, latLonToVector3 }) {
   return (
     // Riduce la dimensione complessiva del marker (sfera + anello + cono)
     <group ref={markerRef} scale={0.15}>
-      {/* Marker principale */}
-      <mesh>
+      {/* Marker principale - posizionato leggermente sopra la superficie */}
+      <mesh position={[0, 0, 0.01]}>
         <sphereGeometry args={[0.06, 16, 16]} />
         <meshStandardMaterial 
-          color="#ff0000" 
-          emissive="#ff0000" 
+          color="#667eea" 
+          emissive="#667eea" 
           emissiveIntensity={0.8}
         />
       </mesh>
       
       {/* Anello pulsante */}
-      <mesh ref={pulseRef}>
+      <mesh ref={pulseRef} position={[0, 0, 0.01]}>
         <torusGeometry args={[0.08, 0.01, 16, 32]} />
         <meshStandardMaterial 
-          color="#ff4444" 
-          emissive="#ff4444" 
+          color="#764ba2" 
+          emissive="#764ba2" 
           emissiveIntensity={0.5}
           transparent
           opacity={0.7}
@@ -253,11 +254,11 @@ function LocationMarker({ lat, lon, latLonToVector3 }) {
       </mesh>
       
       {/* Raggio di luce che punta verso l'esterno */}
-      <mesh position={[0, 0, 0.08]}>
+      <mesh position={[0, 0, 0.09]}>
         <coneGeometry args={[0.02, 0.12, 8]} />
         <meshStandardMaterial 
-          color="#ff0000" 
-          emissive="#ff0000" 
+          color="#667eea" 
+          emissive="#667eea" 
           emissiveIntensity={0.6}
           transparent
           opacity={0.5}

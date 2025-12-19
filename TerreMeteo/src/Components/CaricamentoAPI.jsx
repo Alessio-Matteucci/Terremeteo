@@ -14,8 +14,20 @@ export default function LoadingSpinner({ message = 'Caricamento...' }) {
         p: 4,
       }}
     >
-      <CircularProgress sx={{ color: 'white', mb: 2 }} />
-      <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+      <CircularProgress 
+        sx={{ 
+          color: '#667eea', 
+          mb: 2,
+          '& .MuiCircularProgress-circle': {
+            strokeLinecap: 'round',
+          },
+        }} 
+      />
+      <Typography variant="body1" sx={{ 
+        color: 'rgba(255, 255, 255, 0.8)',
+        fontWeight: 500,
+        letterSpacing: '0.5px',
+      }}>
         {message}
       </Typography>
     </Box>
