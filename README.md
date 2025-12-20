@@ -32,6 +32,8 @@ modifiche:{
     SearchBar.jsx 
 }
 
+19/12/2025
+
 Borozan: Prima aggiunta del robot.txt per mestrare le rotte disponibbili dagli user e modifica alla parte css per migliorare diversi elementi estetici ,
 
 Aggiunta Elements{
@@ -39,3 +41,26 @@ Aggiunta Elements{
     MediaPages.jsx
 }
 
+Matteucci: Modifica del gitignore, modifiche importanti al marker della mappa con le sue diverse interazioni, file interessati:{
+    caricamentoAPI.jsx
+    globo3d.jsx 
+    LuoghiPopolari.jsx
+    SearchBar.jsx
+    PannelloMeteo.jsx
+    ExplorePage.jsx
+}
+
+20/12/2025
+
+Matteucci: Implementazione del popup informativo accanto al marker e miglioramenti alla barra di ricerca:
+- Aggiunto popup con informazioni meteo che appare automaticamente quando viene cercata una posizione
+- Aggiunto bottone "Cerca" nella barra di ricerca con icona
+- Barra di ricerca si chiude automaticamente quando viene eseguita una ricerca (clic bottone o Enter)
+- Gestione del click fuori dalla barra di ricerca per chiudere i risultati
+- Popup non si riapre automaticamente se è stato chiuso manualmente con la X
+
+File modificati:{
+    Globo3D.jsx (aggiunto MarkerInfoPopup, gestione posizionamento popup, reset camera)
+    SearchBar.jsx (aggiunto bottone cerca, gestione chiusura automatica)
+    ExplorePage.jsx (gestione reset visuale, posizionamento barra di ricerca)
+}
