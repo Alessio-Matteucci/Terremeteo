@@ -66,8 +66,19 @@ export default function ExplorePage() {
       }}
     >
       <Container maxWidth="xl" sx={{ py: 4 }}>
-        {/* Barra di ricerca */}
-        <Box sx={{ mb: 4, zIndex: 10, position: 'relative' }}>
+        {/* Barra di ricerca - posizionata sopra la mappa in modo assoluto */}
+        <Box 
+          sx={{ 
+            position: 'absolute',
+            top: 20,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            maxWidth: 600,
+            zIndex: 10,
+            px: 2,
+          }}
+        >
           <SearchBar onCitySelect={handleLocationSelect} />
         </Box>
 
@@ -78,6 +89,7 @@ export default function ExplorePage() {
             minHeight: 500,
             position: 'relative',
             mb: 4,
+            mt: 10,
             borderRadius: '12px',
             overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
@@ -88,6 +100,8 @@ export default function ExplorePage() {
             targetLon={selectedLocation?.longitude || null}
             isAnimating={isAnimating}
             onPickLocation={handleGlobePickLocation}
+            weatherData={weatherData}
+            locationData={selectedLocation}
           />
         </Box>
 

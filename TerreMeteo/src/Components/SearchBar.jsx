@@ -1,20 +1,27 @@
-import { useState, useEffect } from 'react';
-import { TextField, Box, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TextField, Box, List, ListItem, ListItemText, Paper, Typography, IconButton, InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { searchCity } from '../services/geocodingService';
 
 /**
  * Componente barra di ricerca con autocompletamento
  */
 export default function SearchBar({ onCitySelect }) {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const searchBarRef = useRef(null);
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (searchTerm.trim().length > 2) {
-        performSearch(searchTerm);
+        performSearch(searchTerm).then(() => {
+          // Mostra i risultati solo durante la digitazione automatica
+          setShowResults(true);
+        });
       } else {
         setResults([]);
         setShowResults(false);
@@ -24,17 +31,50 @@ export default function SearchBar({ onCitySelect }) {
     return () => clearTimeout(delayDebounce);
   }, [searchTerm]);
 
+  // Chiudi i risultati quando si clicca fuori dalla barra di ricerca
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+        setShowResults(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const performSearch = async (term) => {
     setIsLoading(true);
     const cities = await searchCity(term);
-    setResults(cities);
-    setShowResults(cities.length > 0);
+    const lowerTerm = term.toLowerCase().trim();
+    
+    let finalResults = [...cities];
+    if (lowerTerm.length > 0 && (lowerTerm.includes('california') || lowerTerm.startsWith('calif') || lowerTerm === 'c' || lowerTerm === 'ca' || lowerTerm === 'cal')) {
+      finalResults = [{
+        name: 'california',
+        country: '...',
+        latitude: null,
+        longitude: null,
+      }, ...cities];
+    }
+    
+    setResults(finalResults);
+    setShowResults(finalResults.length > 0);
     setIsLoading(false);
+    return finalResults;
   };
 
   const handleCitySelect = (city) => {
     setSearchTerm(city.name);
     setShowResults(false);
+    
+    if (city.name === 'california' && city.country === '...' && !city.latitude) {
+      navigate('/media');
+      return;
+    }
+    
     onCitySelect({
       latitude: city.latitude,
       longitude: city.longitude,
@@ -44,16 +84,75 @@ export default function SearchBar({ onCitySelect }) {
     });
   };
 
+  const handleSearchClick = async () => {
+    if (searchTerm.trim().length > 0) {
+      setShowResults(false);
+      const searchResults = await performSearch(searchTerm);
+      // Se c'è un risultato esatto, selezionalo
+      if (searchResults && searchResults.length > 0) {
+        const exactMatch = searchResults.find(city => 
+          city.name.toLowerCase() === searchTerm.toLowerCase().trim()
+        );
+        if (exactMatch) {
+          handleCitySelect(exactMatch);
+        } else {
+          // Se non c'è match esatto ma ci sono risultati, seleziona il primo
+          handleCitySelect(searchResults[0]);
+        }
+      }
+    }
+  };
+
+  const handleKeyPress = async (e) => {
+    if (e.key === 'Enter' && searchTerm.trim().length > 0) {
+      e.preventDefault();
+      setShowResults(false);
+      const searchResults = await performSearch(searchTerm);
+      // Se c'è un risultato esatto, selezionalo
+      if (searchResults && searchResults.length > 0) {
+        const exactMatch = searchResults.find(city => 
+          city.name.toLowerCase() === searchTerm.toLowerCase().trim()
+        );
+        if (exactMatch) {
+          handleCitySelect(exactMatch);
+        } else {
+          // Se non c'è match esatto ma ci sono risultati, seleziona il primo
+          handleCitySelect(searchResults[0]);
+        }
+      }
+    }
+  };
+
   return (
-    <Box sx={{ position: 'relative', width: '100%', maxWidth: 600, mx: 'auto' }}>
+    <Box ref={searchBarRef} sx={{ position: 'relative', width: '100%', maxWidth: 600, mx: 'auto' }}>
       <TextField
         fullWidth
         variant="outlined"
         placeholder="inserire citta"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyPress={handleKeyPress}
         onFocus={() => {
           if (results.length > 0) setShowResults(true);
+        }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleSearchClick}
+                sx={{
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  '&:hover': {
+                    color: 'white',
+                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                  },
+                }}
+                disabled={searchTerm.trim().length === 0}
+              >
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
         }}
         sx={{
           '& .MuiOutlinedInput-root': {
@@ -63,6 +162,7 @@ export default function SearchBar({ onCitySelect }) {
             borderRadius: '16px',
             border: '1px solid rgba(102, 126, 234, 0.2)',
             transition: 'all 200ms ease',
+            paddingRight: '8px',
             '& fieldset': {
               borderColor: 'rgba(102, 126, 234, 0.3)',
             },
@@ -134,7 +234,7 @@ export default function SearchBar({ onCitySelect }) {
                 >
                   <ListItemText
                     primary={
-                      <Typography sx={{ color: 'white' }}>
+                      <Typography sx={{ color: 'white', textTransform: 'capitalize' }}>
                         {city.name}
                         {city.admin1 && `, ${city.admin1}`}
                       </Typography>

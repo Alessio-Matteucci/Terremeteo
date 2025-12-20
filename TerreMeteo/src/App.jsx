@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import WelcomePage from './Pages/WelcomePage';
 import ExplorePage from './Pages/ExplorePage';
+import MediaPage from './Pages/MediaPage';
 import NotFoundPage from './ErrorPages/NotFoundPage';
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/media" element={<MediaPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/robots.txt" element={"robots.txt"} />
         </Routes>
