@@ -31,3 +31,11 @@ modifiche:{
     index.css
     SearchBar.jsx 
 }
+
+Borozan: Prima aggiunta del robot.txt per mestrare le rotte disponibbili dagli user e modifica alla parte css per migliorare diversi elementi estetici ,
+
+Aggiunta Elements{
+
+    MediaPages.jsx
+}
+

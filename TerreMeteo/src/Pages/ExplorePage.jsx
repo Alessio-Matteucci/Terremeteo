@@ -56,6 +56,11 @@ export default function ExplorePage() {
     });
   };
 
+  const handleResetView = () => {
+    setSelectedLocation(null);
+    setWeatherData(null);
+  };
+
   return (
     <Box
       sx={{
@@ -102,6 +107,7 @@ export default function ExplorePage() {
             onPickLocation={handleGlobePickLocation}
             weatherData={weatherData}
             locationData={selectedLocation}
+            onResetView={handleResetView}
           />
         </Box>
 

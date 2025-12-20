@@ -42,6 +42,7 @@ export default function NotFoundPage() {
         <Typography variant="body1" sx={{ mb: 6, opacity: 0.8, maxWidth: 600, mx: 'auto' }}>
           La pagina che stai cercando non esiste o è stata spostata.
           Torna alla home per continuare l'esplorazione del meteo mondiale.
+          l'importante è non cercare mai la californai 
         </Typography>
         
         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>

@@ -10,7 +10,7 @@ import { getWeatherDescription, getWeatherIcon } from '../services/weatherServic
  * Componente del globo terrestre 3D realistico
  * Si anima per posizionarsi sulle coordinate specificate
  */
-function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData, locationData, onMarkerClick, markerRef }) {
+function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData, locationData, onMarkerClick, markerRef, shouldResetCamera }) {
   const globeGroupRef = useRef();
   const globeRef = useRef();
   const controlsRef = useRef();
@@ -18,6 +18,7 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData,
   const desiredTargetRef = useRef(new THREE.Vector3(0, 0, 0));
   const desiredCameraPosRef = useRef(new THREE.Vector3(0, 0, 5));
   const desiredDistanceRef = useRef(5);
+  const isResettingRef = useRef(false);
   
   // Carica le texture della Terra e delle nuvole
   // Usiamo texture pubbliche ad alta risoluzione da Three.js examples
@@ -109,6 +110,7 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData,
       // Clamp di sicurezza per evitare casi estremi
       const distance = THREE.MathUtils.clamp(desiredDistanceRef.current, 0.2, 6);
       desiredCameraPosRef.current.copy(targetPos).add(normal.multiplyScalar(distance));
+      isResettingRef.current = false;
     } else {
       // Reset quando non c'è target
       desiredDistanceRef.current = 5;
@@ -117,10 +119,36 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData,
     }
   }, [targetLat, targetLon]);
 
+  // Reset forzato della camera quando viene richiesto
+  useEffect(() => {
+    if (shouldResetCamera && targetLat === null && targetLon === null) {
+      isResettingRef.current = true;
+      desiredDistanceRef.current = 5;
+      desiredTargetRef.current.set(0, 0, 0);
+      desiredCameraPosRef.current.set(0, 0, 5);
+    }
+  }, [shouldResetCamera, targetLat, targetLon]);
+
   useFrame((state) => {
     if (!controlsRef.current) return;
 
-    // Se non stiamo animando, non “forziamo” la camera: lasciamo l'utente libero di ruotare/zoomare.
+    // Se stiamo resettando la camera, forziamo l'animazione anche se isAnimating è false
+    if (isResettingRef.current) {
+      const t = 0.08;
+      state.camera.position.lerp(desiredCameraPosRef.current, t);
+      controlsRef.current.target.lerp(desiredTargetRef.current, t);
+      controlsRef.current.update();
+      
+      // Controlla se abbiamo raggiunto la posizione desiderata
+      const distance = state.camera.position.distanceTo(desiredCameraPosRef.current);
+      const targetDistance = controlsRef.current.target.distanceTo(desiredTargetRef.current);
+      if (distance < 0.01 && targetDistance < 0.01) {
+        isResettingRef.current = false;
+      }
+      return;
+    }
+
+    // Se non stiamo animando, non "forziamo" la camera: lasciamo l'utente libero di ruotare/zoomare.
     // Il set iniziale viene comunque fatto nel momento della ricerca.
     if (!isAnimating) return;
 
@@ -505,10 +533,11 @@ function PopupPositionUpdater({ markerRef, onPositionUpdate, enabled }) {
 /**
  * Componente principale del globo 3D
  */
-export default function Globe3D({ targetLat, targetLon, isAnimating, onPickLocation, weatherData, locationData }) {
+export default function Globe3D({ targetLat, targetLon, isAnimating, onPickLocation, weatherData, locationData, onResetView }) {
   const [popupPosition, setPopupPosition] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [manuallyClosed, setManuallyClosed] = useState(false);
+  const [shouldResetCamera, setShouldResetCamera] = useState(false);
   const markerRef = useRef(null);
   const canvasContainerRef = useRef(null);
 
@@ -524,6 +553,16 @@ export default function Globe3D({ targetLat, targetLon, isAnimating, onPickLocat
     setShowPopup(false);
     setPopupPosition(null);
     setManuallyClosed(true);
+    // Attiva il reset della camera
+    setShouldResetCamera(true);
+    // Resetta la visuale del globo quando il popup viene chiuso
+    if (onResetView) {
+      onResetView();
+    }
+    // Resetta il flag dopo un breve delay per permettere al reset di essere processato
+    setTimeout(() => {
+      setShouldResetCamera(false);
+    }, 100);
   };
 
   const handlePositionUpdate = (position) => {
@@ -567,6 +606,7 @@ export default function Globe3D({ targetLat, targetLon, isAnimating, onPickLocat
           locationData={locationData}
           onMarkerClick={handleMarkerClick}
           markerRef={markerRef}
+          shouldResetCamera={shouldResetCamera}
         />
         {/* Aggiorna sempre la posizione quando ci sono dati meteo, anche se il popup non è ancora visibile */}
         {weatherData && locationData && targetLat !== null && targetLon !== null && (
@@ -578,15 +618,14 @@ export default function Globe3D({ targetLat, targetLon, isAnimating, onPickLocat
         )}
       </Canvas>
       
-      {/* Popup overlay sopra la mappa */}
+      {/* Popup overlay sopra la mappa - posizionato a destra del marker */}
       {showPopup && popupPosition && weatherData && locationData && (
         <Box
           sx={{
             position: 'fixed',
             left: `${popupPosition.x}px`,
             top: `${popupPosition.y}px`,
-            transform: 'translate(-50%, -100%)',
-            marginTop: '-10px',
+            transform: 'translate(20px, -50%)',
             zIndex: 1000,
             pointerEvents: 'auto',
           }}
