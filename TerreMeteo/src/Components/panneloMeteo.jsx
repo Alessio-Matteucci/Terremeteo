@@ -22,7 +22,7 @@ export default function WeatherPanel({ weatherData, locationData }) {
           backgroundColor: 'rgba(26, 26, 46, 0.6)',
           backdropFilter: 'blur(10px)',
           borderRadius: { xs: '12px', sm: '16px' },
-          border: '1px solid rgba(102, 126, 234, 0.2)',
+          border: '1px solid rgba(50, 130, 184, 0.2)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
           height: '100%',
           display: 'flex',
@@ -66,7 +66,7 @@ export default function WeatherPanel({ weatherData, locationData }) {
 
         <Divider sx={{ 
           my: 3, 
-          backgroundColor: 'rgba(102, 126, 234, 0.3)',
+          backgroundColor: 'rgba(50, 130, 184, 0.3)',
           height: '1px',
         }} />
 
@@ -189,13 +189,13 @@ export default function WeatherPanel({ weatherData, locationData }) {
                       p: { xs: 1.5, sm: 2 },
                       textAlign: 'center',
                       backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                      border: '1px solid rgba(102, 126, 234, 0.2)',
+                      border: '1px solid rgba(50, 130, 184, 0.2)',
                       borderRadius: { xs: '10px', sm: '12px' },
                       transition: 'all 200ms ease',
                       '&:hover': {
-                        backgroundColor: 'rgba(102, 126, 234, 0.15)',
+                        backgroundColor: 'rgba(50, 130, 184, 0.15)',
                         transform: { xs: 'translateY(-2px)', sm: 'translateY(-4px)' },
-                        boxShadow: '0 4px 16px rgba(102, 126, 234, 0.3)',
+                        boxShadow: '0 4px 16px rgba(50, 130, 184, 0.3)',
                       },
                     }}
                   >

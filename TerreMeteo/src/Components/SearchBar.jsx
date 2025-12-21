@@ -62,7 +62,7 @@ export default function SearchBar({ onCitySelect }) {
                   padding: { xs: '8px', sm: '12px' },
                   '&:hover': {
                     color: 'white',
-                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                    backgroundColor: 'rgba(50, 130, 184, 0.2)',
                   },
                 }}
                 disabled={searchTerm.trim().length === 0}
@@ -78,22 +78,22 @@ export default function SearchBar({ onCitySelect }) {
             backdropFilter: 'blur(10px)',
             color: 'white',
             borderRadius: { xs: '12px', sm: '16px' },
-            border: '1px solid rgba(102, 126, 234, 0.2)',
+            border: '1px solid rgba(50, 130, 184, 0.2)',
             transition: 'all 200ms ease',
             paddingRight: { xs: '4px', sm: '8px' },
             fontSize: { xs: '14px', sm: '16px' },
             '& fieldset': {
-              borderColor: 'rgba(102, 126, 234, 0.3)',
+              borderColor: 'rgba(50, 130, 184, 0.3)',
             },
             '&:hover fieldset': {
-              borderColor: 'rgba(102, 126, 234, 0.5)',
+              borderColor: 'rgba(50, 130, 184, 0.5)',
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'rgba(102, 126, 234, 0.8)',
+              borderColor: 'rgba(50, 130, 184, 0.8)',
               borderWidth: { xs: '1px', sm: '2px' },
             },
             '&.Mui-focused': {
-              boxShadow: { xs: '0 0 0 2px rgba(102, 126, 234, 0.1)', sm: '0 0 0 4px rgba(102, 126, 234, 0.1)' },
+              boxShadow: { xs: '0 0 0 2px rgba(50, 130, 184, 0.1)', sm: '0 0 0 4px rgba(50, 130, 184, 0.1)' },
             },
           },
           '& .MuiInputBase-input::placeholder': {
@@ -119,7 +119,7 @@ export default function SearchBar({ onCitySelect }) {
               overflow: 'auto',
               backgroundColor: 'rgba(26, 26, 46, 0.95)',
               backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(102, 126, 234, 0.2)',
+              border: '1px solid rgba(50, 130, 184, 0.2)',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
             }}
           >
@@ -148,7 +148,7 @@ export default function SearchBar({ onCitySelect }) {
                     py: { xs: 0.75, sm: 1 },
                     transition: 'all 200ms ease',
                     '&:hover': {
-                      backgroundColor: 'rgba(102, 126, 234, 0.15)',
+                      backgroundColor: 'rgba(50, 130, 184, 0.15)',
                       transform: { xs: 'translateX(2px)', sm: 'translateX(4px)' },
                     },
                   }}

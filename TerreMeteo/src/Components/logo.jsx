@@ -1,4 +1,4 @@
-import logoImage from '../assets/logo.png';
+import logoImage from '../assets/logo_TerreMeteo.png';
 
 function Logo() {
   return (
@@ -14,10 +14,10 @@ function Logo() {
         src={logoImage} 
         alt="TerreMeteo Logo"
         style={{ 
-          height: '52px', 
+          height: '80px', 
           width: 'auto', 
           objectFit: 'contain',
-          maxWidth: '200px',
+          maxWidth: '300px',
         }}
       />
     </div>

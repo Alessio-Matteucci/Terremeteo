@@ -182,7 +182,7 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData,
         <mesh raycast={() => null}>
           <sphereGeometry args={[2.05, 32, 32]} />
           <meshBasicMaterial
-            color="#667eea"
+            color="#3282b8"
             transparent
             opacity={0.15}
             side={THREE.BackSide}
@@ -222,12 +222,12 @@ function MarkerInfoPopup({ weatherData, locationData, onClose }) {
     <Paper
       sx={{
         p: { xs: 1.25, sm: 1.5 },
-        minWidth: { xs: 180, sm: 200 },
+        minWidth: { xs: 180, sm: 180 },
         maxWidth: { xs: '100%', sm: 250 },
         backgroundColor: 'rgba(26, 26, 46, 0.95)',
         backdropFilter: 'blur(20px)',
         borderRadius: { xs: '10px', sm: '12px' },
-        border: '1px solid rgba(102, 126, 234, 0.3)',
+        border: '1px solid rgba(50, 130, 184, 0.3)',
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
         position: 'relative',
       }}
@@ -244,7 +244,7 @@ function MarkerInfoPopup({ weatherData, locationData, onClose }) {
           padding: { xs: '2px', sm: '4px' },
           '&:hover': {
             color: 'white',
-            backgroundColor: 'rgba(102, 126, 234, 0.2)',
+            backgroundColor: 'rgba(50, 130, 184, 0.2)',
           },
           zIndex: 10,
         }}
@@ -362,7 +362,7 @@ function MarkerInfoPopup({ weatherData, locationData, onClose }) {
         <Box sx={{ 
           mt: { xs: 1, sm: 1.5 }, 
           pt: { xs: 1, sm: 1.5 }, 
-          borderTop: '1px solid rgba(102, 126, 234, 0.2)' 
+          borderTop: '1px solid rgba(50, 130, 184, 0.2)' 
         }}>
           <Typography variant="caption" sx={{ 
             color: 'rgba(255, 255, 255, 0.7)', 
@@ -500,8 +500,8 @@ function LocationMarker({ lat, lon, latLonToVector3, onMarkerClick, markerRef: e
       >
         <sphereGeometry args={[0.06, 16, 16]} />
         <meshStandardMaterial 
-          color="#667eea" 
-          emissive="#667eea" 
+            color="#3282b8"
+          emissive="#3282b8" 
           emissiveIntensity={0.8}
         />
       </mesh>
@@ -510,8 +510,8 @@ function LocationMarker({ lat, lon, latLonToVector3, onMarkerClick, markerRef: e
       <mesh ref={pulseRef} position={[0, 0, 0.01]}>
         <torusGeometry args={[0.08, 0.01, 16, 32]} />
         <meshStandardMaterial 
-          color="#764ba2" 
-          emissive="#764ba2" 
+          color="#42a5f5" 
+          emissive="#42a5f5" 
           emissiveIntensity={0.5}
           transparent
           opacity={0.7}
@@ -522,8 +522,8 @@ function LocationMarker({ lat, lon, latLonToVector3, onMarkerClick, markerRef: e
       <mesh position={[0, 0, 0.09]}>
         <coneGeometry args={[0.02, 0.12, 8]} />
         <meshStandardMaterial 
-          color="#667eea" 
-          emissive="#667eea" 
+            color="#3282b8"
+          emissive="#3282b8" 
           emissiveIntensity={0.6}
           transparent
           opacity={0.5}
@@ -638,7 +638,7 @@ export default function Globe3D({ targetLat, targetLon, isAnimating, onPickLocat
     <div ref={canvasContainerRef} style={{ width: '100%', height: '100%', background: '#000', position: 'relative' }}>
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
-        style={{ background: 'radial-gradient(circle, #1a1a2e 0%, #000 100%)' }}
+        style={{ background: 'radial-gradient(circle, #3282b8 0%, #0f4c75 100%)' }}
         gl={{ antialias: true, alpha: false }}
       >
         <Globe

@@ -35,30 +35,29 @@ export default function ExplorePage() {
     }
   };
 
-  // Handler per il click sul globo
-  const handleGlobePickLocationWithSave = (latitude, longitude) => {
+  // Handler per il click sul globo - NON salva nelle ricerche
+  const handleGlobePickLocationNoSave = (latitude, longitude) => {
     handleGlobePickLocation(latitude, longitude);
-    // Salva anche quando si clicca sul globo
-    if (latitude && longitude) {
-      saveSearch({
-        latitude,
-        longitude,
-        name: 'Punto selezionato',
-        country: 'Coordinate',
-        admin1: null,
-      });
-      // Incrementa il trigger per aggiornare la lista
-      setRefreshTrigger(prev => prev + 1);
-    }
+    // NON salvare quando si clicca sul globo, solo quando si cerca dalla barra
   };
 
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)',
+        background: 'linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%)',
         position: 'relative',
         overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 20% 50%, rgba(187, 225, 250, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(50, 130, 184, 0.2) 0%, transparent 50%)',
+          pointerEvents: 'none',
+        },
       }}
     >
       <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 3, md: 4 }, px: { xs: 1, sm: 2, md: 3 } }}>
@@ -87,16 +86,21 @@ export default function ExplorePage() {
             position: 'relative',
             mb: { xs: 2, sm: 3, md: 4 },
             mt: { xs: 2, sm: 8, md: 10 },
-            borderRadius: { xs: '8px', sm: '12px' },
+            borderRadius: '25px',
             overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+            maxWidth: { xs: '100%', sm: '90%', md: '85%' },
+            mx: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Globe3D
             targetLat={selectedLocation?.latitude || null}
             targetLon={selectedLocation?.longitude || null}
             isAnimating={isAnimating}
-            onPickLocation={handleGlobePickLocationWithSave}
+            onPickLocation={handleGlobePickLocationNoSave}
             weatherData={weatherData}
             locationData={selectedLocation}
             onResetView={handleResetView}

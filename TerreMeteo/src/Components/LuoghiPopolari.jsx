@@ -34,7 +34,7 @@ export default function PopularLocations({ onLocationSelect }) {
         borderRadius: { xs: '12px', sm: '16px' },
         padding: { xs: '12px', sm: '16px', md: '20px' },
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-        border: '1px solid rgba(102, 126, 234, 0.2)',
+        border: '1px solid rgba(50, 130, 184, 0.2)',
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -47,13 +47,13 @@ export default function PopularLocations({ onLocationSelect }) {
       >
         <Box
           sx={{
-            background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)',
+            background: 'linear-gradient(135deg, rgba(15, 76, 117, 0.3) 0%, rgba(50, 130, 184, 0.3) 100%)',
             borderRadius: { xs: '10px', sm: '12px' },
             padding: { xs: '10px 12px', sm: '12px 16px' },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '1px solid rgba(102, 126, 234, 0.3)',
+            border: '1px solid rgba(50, 130, 184, 0.3)',
           }}
         >
           <Typography 
@@ -97,10 +97,10 @@ export default function PopularLocations({ onLocationSelect }) {
             borderRadius: '3px',
           },
           '&::-webkit-scrollbar-thumb': {
-            background: 'rgba(102, 126, 234, 0.5)',
+            background: 'rgba(50, 130, 184, 0.5)',
             borderRadius: '3px',
             '&:hover': {
-              background: 'rgba(102, 126, 234, 0.7)',
+              background: 'rgba(50, 130, 184, 0.7)',
             },
           },
         }}
@@ -117,7 +117,7 @@ export default function PopularLocations({ onLocationSelect }) {
               padding: { xs: '10px 16px', sm: '12px 20px', md: '14px 24px' },
               borderRadius: '9999px',
               background: 'rgba(102, 126, 234, 0.15)',
-              border: '1px solid rgba(102, 126, 234, 0.3)',
+              border: '1px solid rgba(50, 130, 184, 0.3)',
               fontSize: { xs: '14px', sm: '15px', md: '16px' },
               fontWeight: 600,
               whiteSpace: 'nowrap',
@@ -134,9 +134,9 @@ export default function PopularLocations({ onLocationSelect }) {
               width: { sm: 'calc(50% - 5px)', md: 'calc(33.333% - 8px)' },
               '&:hover': {
                 transform: { xs: 'translateY(-1px)', sm: 'translateY(-2px)' },
-                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.4)',
-                backgroundColor: 'rgba(102, 126, 234, 0.25)',
-                borderColor: 'rgba(102, 126, 234, 0.5)',
+                boxShadow: '0 8px 24px rgba(50, 130, 184, 0.4)',
+                backgroundColor: 'rgba(50, 130, 184, 0.25)',
+                borderColor: 'rgba(50, 130, 184, 0.5)',
               },
             }}
           >

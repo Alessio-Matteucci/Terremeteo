@@ -17,7 +17,7 @@ export default function Footer() {
         mt: 'auto',
         backgroundColor: 'rgba(26, 26, 46, 0.8)',
         backdropFilter: 'blur(10px)',
-        borderTop: '1px solid rgba(102, 126, 234, 0.2)',
+        borderTop: '1px solid rgba(50, 130, 184, 0.2)',
         py: { xs: 3, sm: 4, md: 5 },
       }}
     >
@@ -30,7 +30,7 @@ export default function Footer() {
               sx={{
                 fontWeight: 700,
                 mb: 2,
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #0f4c75 0%, #3282b8 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -79,7 +79,7 @@ export default function Footer() {
                   fontSize: '0.875rem',
                   transition: 'color 0.2s ease',
                   '&:hover': {
-                    color: '#667eea',
+                    color: '#3282b8',
                   },
                 }}
               >
@@ -94,7 +94,7 @@ export default function Footer() {
                   fontSize: '0.875rem',
                   transition: 'color 0.2s ease',
                   '&:hover': {
-                    color: '#667eea',
+                    color: '#3282b8',
                   },
                 }}
               >
@@ -109,7 +109,7 @@ export default function Footer() {
                   fontSize: '0.875rem',
                   transition: 'color 0.2s ease',
                   '&:hover': {
-                    color: '#667eea',
+                    color: '#3282b8',
                   },
                 }}
               >
@@ -154,7 +154,7 @@ export default function Footer() {
                     fontSize: '0.875rem',
                     transition: 'color 0.2s ease',
                     '&:hover': {
-                      color: '#667eea',
+                      color: '#3282b8',
                     },
                   }}
                 >
@@ -187,7 +187,7 @@ export default function Footer() {
           sx={{
             mt: 4,
             pt: 3,
-            borderTop: '1px solid rgba(102, 126, 234, 0.2)',
+            borderTop: '1px solid rgba(50, 130, 184, 0.2)',
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'space-between',
@@ -218,7 +218,7 @@ export default function Footer() {
                 color: 'rgba(255, 255, 255, 0.7)',
                 '&:hover': {
                   color: '#667eea',
-                  backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                  backgroundColor: 'rgba(50, 130, 184, 0.1)',
                 },
               }}
             >

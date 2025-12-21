@@ -75,3 +75,10 @@ implementazione degli elements:{
     LogoTerraMeteo
     UltimeRicerche
 } 
+
+
+Borozan: Ultimi ritocchi estetici al sito e Completamento finale del proggetto 
+
+
+
+Buone Feste!!

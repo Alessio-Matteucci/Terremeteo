@@ -4,21 +4,26 @@ import WelcomePage from './Pages/WelcomePage';
 import ExplorePage from './Pages/ExplorePage';
 import MediaPage from './Pages/MediaPage';
 import NotFoundPage from './ErrorPages/NotFoundPage';
+import Header from './Components/Header';
 import Footer from './Components/Footer';
 import './App.css';
 
-// Tema scuro personalizzato
+// Tema scuro personalizzato con gradazione blu cielo
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#667eea',
+      main: '#3282b8',
+      light: '#bbe1fa',
+      dark: '#0f4c75',
     },
     secondary: {
-      main: '#764ba2',
+      main: '#42a5f5',
+      light: '#90caf9',
+      dark: '#1565c0',
     },
     background: {
-      default: '#0a0a0a',
+      default: '#0a1929',
       paper: '#1a1a2e',
     },
   },
@@ -39,6 +44,7 @@ function App() {
             minHeight: '100vh',
           }}
         >
+          <Header />
           <Box
             component="main"
             sx={{
