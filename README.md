@@ -127,20 +127,6 @@ npm run lint     # Esegue il linter
 - Safari (ultime versioni)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Funzionalità Future
-
-- Salvataggio località preferite
-- Confronto meteo tra più città
-- Grafici meteo interattivi
-- Notifiche meteo
-- Storia ricerche recenti
-- Modalità giorno/notte per il globo
-- Esportazione dati meteo
-
-## Licenza
-
-Questo progetto è stato sviluppato a scopo educativo.
-
 ## Autori
 
 - **Borozan** - Sviluppo componenti principali e UI

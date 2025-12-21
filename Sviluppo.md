@@ -64,3 +64,14 @@ File modificati:{
     SearchBar.jsx (aggiunto bottone cerca, gestione chiusura automatica)
     ExplorePage.jsx (gestione reset visuale, posizionamento barra di ricerca)
 }
+
+21/12/2025
+
+Borozan: implementazione funzionale per la cronologia delle ricerche, aggiunta di un footer nelle pagine e fix generale della posizione degli elementi dell app
+
+implementazione degli elements:{
+
+    Footer.jsx
+    LogoTerraMeteo
+    UltimeRicerche
+} 

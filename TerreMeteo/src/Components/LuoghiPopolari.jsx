@@ -13,6 +13,7 @@ export default function PopularLocations({ onLocationSelect }) {
     { name: 'Tokyo', country: 'Giappone', lat: 35.6762, lon: 139.6503 },
     { name: 'Sydney', country: 'Australia', lat: -33.8688, lon: 151.2093 },
     { name: 'Dubai', country: 'Emirati Arabi', lat: 25.2048, lon: 55.2708 },
+    { name: 'Barcellona', country: 'Spagna', lat: 41.3851, lon: 2.1734 },
   ];
 
   const handleClick = (city) => {
@@ -27,14 +28,15 @@ export default function PopularLocations({ onLocationSelect }) {
   return (
     <Box 
       sx={{ 
-        mt: { xs: 2, sm: 3, md: 4 }, 
-        mb: { xs: 2, sm: 3, md: 4 },
+        height: '100%',
         backgroundColor: 'rgba(26, 26, 46, 0.6)',
         backdropFilter: 'blur(10px)',
         borderRadius: { xs: '12px', sm: '16px' },
         padding: { xs: '12px', sm: '16px', md: '20px' },
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
         border: '1px solid rgba(102, 126, 234, 0.2)',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       {/* Parte superiore con div più opaco */}
@@ -72,14 +74,22 @@ export default function PopularLocations({ onLocationSelect }) {
       <Box
         sx={{
           display: 'flex',
-          gap: { xs: '8px', sm: '12px', md: '16px' },
+          gap: { xs: '8px', sm: '10px', md: '12px' },
           padding: { xs: '8px', sm: '12px', md: '16px' },
           overflowX: 'auto',
+          overflowY: 'auto',
           WebkitOverflowScrolling: 'touch',
           alignItems: 'center',
           justifyContent: { xs: 'flex-start', sm: 'space-evenly' },
-          flexWrap: { xs: 'nowrap', sm: 'wrap' },
+          flexWrap: { xs: 'nowrap', sm: 'wrap', md: 'wrap' },
+          '& > *': {
+            flexBasis: { xs: 'auto', sm: 'calc(50% - 8px)', md: 'calc(25% - 12px)' },
+            maxWidth: { xs: 'none', sm: 'calc(50% - 8px)', md: 'calc(25% - 12px)' },
+          },
+          flex: 1,
+          maxHeight: { xs: 'none', md: 'calc(100vh - 200px)' },
           '&::-webkit-scrollbar': {
+            width: { xs: '4px', sm: '6px', md: '8px' },
             height: { xs: '4px', sm: '6px' },
           },
           '&::-webkit-scrollbar-track': {
@@ -104,19 +114,24 @@ export default function PopularLocations({ onLocationSelect }) {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '8px',
-              padding: { xs: '10px 16px', sm: '14px 24px', md: '18px 32px' },
+              padding: { xs: '10px 16px', sm: '12px 20px', md: '14px 24px' },
               borderRadius: '9999px',
               background: 'rgba(102, 126, 234, 0.15)',
               border: '1px solid rgba(102, 126, 234, 0.3)',
-              fontSize: { xs: '14px', sm: '16px', md: '18px' },
+              fontSize: { xs: '14px', sm: '15px', md: '16px' },
               fontWeight: 600,
               whiteSpace: 'nowrap',
               color: 'rgba(255, 255, 255, 0.9)',
               textTransform: 'none',
               transition: 'all 200ms ease',
-              flex: { xs: '0 0 auto', sm: '1 1 auto' },
-              minWidth: { xs: 'fit-content', sm: '100px', md: '140px' },
-              maxWidth: { sm: '180px', md: '220px' },
+              flex: { 
+                xs: '0 0 auto', 
+                sm: '0 0 calc(50% - 5px)', 
+                md: '0 0 calc(33.333% - 8px)' 
+              },
+              minWidth: { xs: 'fit-content', sm: 'calc(50% - 5px)', md: 'calc(33.333% - 8px)' },
+              maxWidth: { xs: 'none', sm: 'calc(50% - 5px)', md: 'calc(33.333% - 8px)' },
+              width: { sm: 'calc(50% - 5px)', md: 'calc(33.333% - 8px)' },
               '&:hover': {
                 transform: { xs: 'translateY(-1px)', sm: 'translateY(-2px)' },
                 boxShadow: '0 8px 24px rgba(102, 126, 234, 0.4)',

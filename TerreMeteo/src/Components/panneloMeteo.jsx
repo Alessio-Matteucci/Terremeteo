@@ -15,7 +15,7 @@ export default function WeatherPanel({ weatherData, locationData }) {
   const formatCoord = coordinateUtils.formatCoordinate;
 
   return (
-    <Box sx={{ mt: { xs: 2, sm: 3, md: 4 }, mb: { xs: 2, sm: 3, md: 4 } }}>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Paper
         sx={{
           p: { xs: 2, sm: 2.5, md: 3 },
@@ -24,6 +24,25 @@ export default function WeatherPanel({ weatherData, locationData }) {
           borderRadius: { xs: '12px', sm: '16px' },
           border: '1px solid rgba(102, 126, 234, 0.2)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          overflowY: 'auto',
+          maxHeight: { xs: 'none', md: 'calc(100vh - 200px)' },
+          '&::-webkit-scrollbar': {
+            width: '8px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: 'rgba(255, 255, 255, 0.1)',
+            borderRadius: '4px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: 'rgba(102, 126, 234, 0.5)',
+            borderRadius: '4px',
+            '&:hover': {
+              background: 'rgba(102, 126, 234, 0.7)',
+            },
+          },
         }}
       >
         {/* Informazioni geografiche */}

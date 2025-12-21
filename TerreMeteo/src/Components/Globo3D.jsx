@@ -133,12 +133,14 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData,
         enableZoom={true}
         enablePan={false}
         minDistance={0.2}
-        maxDistance={8}
+        maxDistance={6}
         autoRotate={false}
         zoomSpeed={0.8}
         enableDamping={true}
         dampingFactor={0.05}
         rotateSpeed={0.5}
+        minPolarAngle={0}
+        maxPolarAngle={Math.PI}
         mouseButtons={{
           LEFT: THREE.MOUSE.ROTATE,
           MIDDLE: THREE.MOUSE.DOLLY,
@@ -149,7 +151,7 @@ function Globe({ targetLat, targetLon, isAnimating, onPickLocation, weatherData,
           TWO: THREE.TOUCH.DOLLY_PAN
         }}
       />
-      <Stars radius={300} depth={60} count={10000} factor={7} fade speed={1} />
+      <Stars radius={100} depth={30} count={2000} factor={4} fade speed={0.5} />
 
       {/* Gruppo unico: ruotiamo questo (terra + nuvole + marker + atmosfera) */}
       <group ref={globeGroupRef}>

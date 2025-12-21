@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Allow: /explore
+Allow: /media
 Allow: /*
 Disallow: /California
-Sitemap: /robots.txt
+
+Allow: /robots.txt
